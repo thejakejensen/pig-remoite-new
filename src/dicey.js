@@ -1,6 +1,7 @@
 // Back-end Function
 //Player Object
-function Player(name) {
+export function Player(name) {
+  console.log(name);
   this.name = name,
   this.gameScore = 0,
   this.roundScore = 0
@@ -59,29 +60,3 @@ Game.prototype.switchPlayer = function() {
   this.currentPlayer = this.player1;
   }
 }
-
-
-//UI function
-
-$(document).ready(function(){
-  var game = new Game();
-  $("#newGame").click(function(event){
-    event.preventDefault();
-    var player1 = new Player($("input#player1Name").val());
-    var player2 = new Player($("input#player2Name").val());
-
-    $("#player1name").text(player1.name);
-    $("#player2name").text(player2.name);
-  });
-  $("#roll").click(function(){
-    game.rollDie();
-    $("#round").text(game.currentPlayer.roundScore)
-  });
-  $("#hold").click(function(){
-    game.hold();
-    $("#round").text(game.currentPlayer.roundScore);
-    $("#" + game.currentPlayer.name).text(game.currentPlayer.gameScore);
-    game.switchPlayer();
-
-  });
-});
